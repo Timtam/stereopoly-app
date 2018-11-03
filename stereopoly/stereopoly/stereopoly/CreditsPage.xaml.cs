@@ -9,12 +9,17 @@ using Xamarin.Forms.Xaml;
 
 namespace stereopoly
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CreditsPage : ContentPage
-	{
-		public CreditsPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+  [XamlCompilation(XamlCompilationOptions.Compile)]
+  public partial class CreditsPage : ContentPage
+  {
+    public CreditsPage ()
+    {
+      InitializeComponent ();
+    }
+
+    void OnContact(object sender, EventArgs e)
+    {
+      Device.OpenUri(new Uri("Mailto:software@satoprogs.de"));
+    }
+  }
 }

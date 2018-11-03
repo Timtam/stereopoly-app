@@ -12,10 +12,10 @@
     </ContentPage.Padding>
     <StackLayout>
       <Button x:Name="CreateGameButton" Text="Create new game" Clicked="OnCreate" />
-<!--      <Button x:Name="ContinueGameButton" Text="Continue Game" Clicked="OnContinue" />
+      <Button x:Name="ContinueGameButton" Text="Continue Game" Clicked="OnContinue" />
       <Button x:Name="SettingsButton" Text="Settings" Clicked="OnSettings" />
       <Button x:Name="HelpButton" Text="Help" Clicked="OnHelp" />
       <Button x:Name="CreditsButton" Text="About" Clicked="OnCredits" />
--->    </StackLayout>
+    </StackLayout>
 
 </ContentPage>

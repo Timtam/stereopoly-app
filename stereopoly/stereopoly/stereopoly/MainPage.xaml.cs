@@ -18,5 +18,25 @@ namespace stereopoly
     {
       await Navigation.PushAsync(new CreateGamePage());
     }
+
+    async void OnContinue(object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new ContinueGamePage());
+    }
+
+    async void OnSettings(object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new SettingsPage());
+    }
+
+    async void OnHelp(object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new HelpPage());
+    }
+
+    async void OnCredits(object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new CreditsPage());
+    }
   }
 }

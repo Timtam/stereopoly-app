@@ -2,11 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="stereopoly.CreditsPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="20, 40, 20, 20" />
+            <On Platform="Android, UWP" Value="20" />
+        </OnPlatform>
+    </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+      <Button x:Name="ContactButton" Text="Contact the developer" Clicked="OnContact" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
