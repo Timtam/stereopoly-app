@@ -9,8 +9,11 @@
     </OnPlatform>
   </ContentPage.Padding>
   <ContentPage.Content>
-    <StackLayout x:Name="BoardLayout">
-      <ActivityIndicator x:Name="DownloadingIndicator" Color="Red" IsRunning="true" />
+    <StackLayout>
+      <Button x:Name="RefreshButton" Text="Update list" Clicked="OnRefresh" />
+      <ActivityIndicator x:Name="DownloadingIndicator" Color="Red" IsRunning="false" />
+      <StackLayout x:Name="BoardLayout">
+      </StackLayout>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
