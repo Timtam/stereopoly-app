@@ -10,6 +10,7 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
+      <Label x:Name="VersionLabel" />
       <Button x:Name="ContactButton" Text="Contact the developer" Clicked="OnContact" />
         </StackLayout>
     </ContentPage.Content>
