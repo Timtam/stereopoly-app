@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 using stereopoly;
 
@@ -10,8 +12,18 @@ namespace stereopoly.api
 {
   public static class Caller
   {
-    public static void RequestBoards(Action<List<Board>, string> handler)
+    static HttpClient Client;
+
+    static Caller()
     {
+      Client = new HttpClient();
+    }
+
+    public static async Task<List<Board>> RequestBoards()
+    {
+      Error e;
+      HttpResponseMessage resp;
+      string data;
       UriBuilder u = new UriBuilder(Constants.API_URL);
       
       // adding boards
@@ -20,22 +32,26 @@ namespace stereopoly.api
       // app version
       u.Query += "api=" + AppInfo.VersionString;
 
-      DependencyService.Get<IDownloader>().DownloadString(u.Uri, 
-        (r) => BoardListResponder(r, handler)
-      );
-    }
+      resp = await Client.GetAsync(u.Uri);
 
-    private static void BoardListResponder(string r, Action<List<Board>, string> handler)
-    {
       try
       {
-        List<Board> boards = JsonConvert.DeserializeObject<List<Board>>(r);
-        handler(boards, "");
+        data = await resp.Content.ReadAsStringAsync();
+        if(resp.StatusCode == HttpStatusCode.OK)
+          return JsonConvert.DeserializeObject<List<Board>>(data);
+        else if(resp.StatusCode == HttpStatusCode.BadRequest)
+        {
+          e = JsonConvert.DeserializeObject<Error>(data);
+          throw(new WebException(e.Text));
+        }
+        else
+        {
+          throw(new WebException("Invalid status code: " + resp.StatusCode));
+        }
       }
-      catch (Exception)
+      catch (HttpRequestException ex)
       {
-        Error err = JsonConvert.DeserializeObject<Error>(r);
-        handler(null, err.Text);
+        throw(ex.InnerException);
       }
     }
   }
