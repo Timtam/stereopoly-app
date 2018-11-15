@@ -15,15 +15,23 @@ namespace stereopoly
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class CreateGamePage : ContentPage
   {
+    private bool Initialized = false;
+    private Dictionary<Button, int> ButtonBoardMapping;
+
     public CreateGamePage ()
     {
       InitializeComponent ();
+      this.Initialized = true;
+      this.ButtonBoardMapping = new Dictionary<Button, int>();
     }
 
     protected override async void OnAppearing()
     {
+      if(!this.Initialized)
+        return;
       await this.UpdateBoards();
       Storage.BoardUpdateRequired = false;
+      this.Initialized = false;
     }
 
     async void OnRefresh(object sender, EventArgs e)
@@ -36,6 +44,7 @@ namespace stereopoly
     {
       Button b;
       int i;
+      Board a;
       List<Board> boards;
       if(Storage.BoardUpdateRequired || forced)
       {
@@ -59,23 +68,27 @@ namespace stereopoly
         }
       }
 
+      this.ButtonBoardMapping.Clear();
       boards = Storage.GetAllBoards();
 
       for(i=0; i < boards.Count; i++)
       {
+        a = boards[i];
         b = new Button {
-          Text = boards[i].Name,
-          Command = new Command(async () => {
-            await this.OnBoardSelect(boards[i].ID);
-          })
+          Text = a.Name,
+        };
+        b.Clicked += async (s,e) => {
+          await this.OnBoardSelect(this.ButtonBoardMapping[(Button)s]);
         };
         this.BoardLayout.Children.Add(b);
+        this.ButtonBoardMapping.Add(b, a.ID);
       }
     }
 
     public async Task OnBoardSelect(int id)
     {
       Board b;
+
       if(Storage.UpdateRequiredForBoard(id))
       {
         this.DownloadingIndicator.IsRunning = true;

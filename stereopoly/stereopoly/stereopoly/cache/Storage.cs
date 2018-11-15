@@ -57,9 +57,6 @@ namespace stereopoly.cache
         return;
       }
 
-      if(search[0].Version == b.Version)
-        return;
-
       idx = CachedBoards.IndexOf(search[0]);
 
       CachedBoards[idx] = b;
@@ -67,25 +64,20 @@ namespace stereopoly.cache
       
     }
 
-    public static bool UpdateRequiredForBoard(Board b)
-    {
-      List<Board> search = CachedBoards.Where(o => o.ID == b.ID).ToList();
-
-      if(search.Count == 0)
-        return true;
-        
-      if(search[0].Version != b.Version)
-        return true;
-        
-      return false;
-    }
-
-    public static bool UpdateRequiredForBoard(int id)
+    public static bool UpdateRequiredForBoard(int id, int version = 0)
     {
       List<Board> search = CachedBoards.Where(o => o.ID == id).ToList();
+
       if(search.Count == 0)
         return true;
-      return UpdateRequiredForBoard(search[0]);
+
+      if(version > 0 && search[0].Version != version)
+        return true;
+        
+      if(search[0].News == null || search[0].News.Count == 0 || search[0].MoneyScheme == null)
+        return true;
+
+      return false;
     }
 
     public static void UpdateBoards(List<Board> b)
@@ -93,7 +85,7 @@ namespace stereopoly.cache
       int i;
       
       for(i=0; i < b.Count; i++)
-        if(UpdateRequiredForBoard(b[i]))
+        if(UpdateRequiredForBoard(b[i].ID, b[i].Version))
           UpdateBoard(b[i]);
     }
 
