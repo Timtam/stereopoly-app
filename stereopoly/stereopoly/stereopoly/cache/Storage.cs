@@ -80,6 +80,14 @@ namespace stereopoly.cache
       return false;
     }
 
+    public static bool UpdateRequiredForBoard(int id)
+    {
+      List<Board> search = CachedBoards.Where(o => o.ID == id).ToList();
+      if(search.Count == 0)
+        return true;
+      return UpdateRequiredForBoard(search[0]);
+    }
+
     public static void UpdateBoards(List<Board> b)
     {
       int i;
@@ -92,6 +100,15 @@ namespace stereopoly.cache
     public static List<Board> GetAllBoards()
     {
       return new List<Board>(CachedBoards);
+    }
+
+    public static Board GetBoard(int id)
+    {
+      List<Board> search = CachedBoards.Where(o => o.ID == id).ToList();
+      
+      if(search.Count == 0)
+        return null;
+      return search[0];
     }
   }
 }
