@@ -54,5 +54,42 @@ namespace stereopoly.api
         throw(ex.InnerException);
       }
     }
+
+    public static async Task<Board> RequestBoard(int id)
+    {
+      Error e;
+      HttpResponseMessage resp;
+      string data;
+      UriBuilder u = new UriBuilder(Constants.API_URL);
+      
+      // adding boards
+      u.Path += "boards";
+      u.Path += "/" + id;
+
+      // app version
+      u.Query += "api=" + AppInfo.VersionString;
+
+      resp = await Client.GetAsync(u.Uri);
+
+      try
+      {
+        data = await resp.Content.ReadAsStringAsync();
+        if(resp.StatusCode == HttpStatusCode.OK)
+          return JsonConvert.DeserializeObject<Board>(data);
+        else if(resp.StatusCode == HttpStatusCode.BadRequest)
+        {
+          e = JsonConvert.DeserializeObject<Error>(data);
+          throw(new WebException(e.Text));
+        }
+        else
+        {
+          throw(new WebException("Invalid status code: " + resp.StatusCode));
+        }
+      }
+      catch (HttpRequestException ex)
+      {
+        throw(ex.InnerException);
+      }
+    }
   }
 }
