@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using stereopoly.api;
+using stereopoly.cache;
 
 namespace stereopoly
 {
@@ -23,37 +24,44 @@ namespace stereopoly
     protected override async void OnAppearing()
     {
       await this.UpdateBoards();
+      Storage.BoardUpdateRequired = false;
     }
 
     async void OnRefresh(object sender, EventArgs e)
     {
       this.BoardLayout.Children.Clear();
-      await this.UpdateBoards();
+      await this.UpdateBoards(true);
     }
 
-    private async Task UpdateBoards()
+    private async Task UpdateBoards(bool forced = false)
     {
       Button b;
       int i;
       List<Board> boards;
-      this.DownloadingIndicator.IsRunning = true;
-      this.RefreshButton.IsEnabled = false;
-      try
+      if(Storage.BoardUpdateRequired || forced)
       {
-        boards = await Caller.RequestBoards();
+        this.DownloadingIndicator.IsRunning = true;
+        this.RefreshButton.IsEnabled = false;
+        try
+        {
+          boards = await Caller.RequestBoards();
+          Storage.UpdateBoards(boards);
+          Storage.BoardUpdateRequired = false;
+        }
+        catch (WebException ex)
+        {
+          boards = null;
+          await DisplayAlert("Error", "An error occurred while retrieving the list of known boards: " + ex.Message, "OK");
+        }
+        finally
+        {
+          this.DownloadingIndicator.IsRunning=false;
+          this.RefreshButton.IsEnabled = true;
+        }
       }
-      catch (WebException ex)
-      {
-        boards = null;
-        await DisplayAlert("Error", "An error occurred while retrieving the list of known boards: " + ex.Message, "OK");
-      }
-      finally
-      {
-        this.DownloadingIndicator.IsRunning=false;
-        this.RefreshButton.IsEnabled = true;
-      }
-      if(boards == null)
-        return;
+
+      boards = Storage.GetAllBoards();
+
       for(i=0; i < boards.Count; i++)
       {
         b = new Button {
