@@ -74,7 +74,7 @@ namespace stereopoly.cache
       if(version > 0 && search[0].Version != version)
         return true;
         
-      if(search[0].News == null || search[0].News.Count == 0 || search[0].MoneyScheme == null)
+      if(search[0].Newsgroups == null || search[0].Newsgroups.Count == 0 || search[0].MoneyScheme == null)
         return true;
 
       return false;
@@ -101,6 +101,12 @@ namespace stereopoly.cache
       if(search.Count == 0)
         return null;
       return search[0];
+    }
+
+    public static void ClearCache()
+    {
+      CachedBoards.Clear();
+      SaveCache();
     }
   }
 }

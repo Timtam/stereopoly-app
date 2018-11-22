@@ -13,7 +13,7 @@ namespace stereopoly.api
     public int ID;
     [JsonProperty("money_scheme")]
     public MoneyScheme MoneyScheme;
-    [JsonProperty("news")]
-    public List<News> News;
+    [JsonProperty("newsgroups")]
+    public List<Newsgroup> Newsgroups;
   }
 }
