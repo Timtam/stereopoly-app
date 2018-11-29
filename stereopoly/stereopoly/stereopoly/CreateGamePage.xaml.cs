@@ -88,6 +88,7 @@ namespace stereopoly
     public async Task OnBoardSelect(int id)
     {
       Board b;
+      GameState s;
 
       if(Storage.UpdateRequiredForBoard(id))
       {
@@ -113,8 +114,9 @@ namespace stereopoly
       }
 
       b = Storage.GetBoard(id);
+      s = new GameState(b);
       Navigation.RemovePage(this);
-      await Navigation.PushAsync(new GameBoardPage(b));
+      await Navigation.PushAsync(new GameBoardPage(s));
     }
   }
 }

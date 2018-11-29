@@ -14,15 +14,17 @@ namespace stereopoly
   public partial class GameBoardPage : ContentPage
   {
 
-    private Board board;
-    public GameBoardPage (Board b)
+    private GameState state;
+    public GameBoardPage (GameState s)
     {
       InitializeComponent ();
-      this.board = b;
+      this.state = s;
     }
 
     public async void OnWatchNews(object sender, EventArgs e)
     {
+      News n = this.state.GetNextNews();
+      await Navigation.PushAsync(new WatchNewsPage(n));
     }
 
     public async void OnSettings(object sender, EventArgs e)
