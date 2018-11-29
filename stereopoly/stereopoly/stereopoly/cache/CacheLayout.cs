@@ -9,5 +9,7 @@ namespace stereopoly.cache
   {
     [JsonProperty("boards")]
     public List<Board> Boards;
+    [JsonProperty("game_states")]
+    public List<GameState> GameStates;
   }
 }

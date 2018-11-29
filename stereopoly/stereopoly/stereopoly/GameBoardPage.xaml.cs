@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using stereopoly.api;
+using stereopoly.cache;
 
 namespace stereopoly
 {
@@ -24,6 +25,7 @@ namespace stereopoly
     public async void OnWatchNews(object sender, EventArgs e)
     {
       News n = this.state.GetNextNews();
+      Storage.SaveCache();
       await Navigation.PushAsync(new WatchNewsPage(n));
     }
 

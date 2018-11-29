@@ -11,6 +11,7 @@ namespace stereopoly.cache
   public static class Storage
   {
     private static List<Board> CachedBoards;
+    private static List<GameState> GameStates;
     private static string StorageFile;
     public static bool BoardUpdateRequired = true;
 
@@ -34,6 +35,7 @@ namespace stereopoly.cache
       c = JsonConvert.DeserializeObject<CacheLayout>(data);
 
       CachedBoards = c.Boards;
+      GameStates = c.GameStates;
     }
 
     public static void SaveCache()
@@ -41,6 +43,7 @@ namespace stereopoly.cache
       CacheLayout c = new CacheLayout();
       string data;
       c.Boards = CachedBoards;
+      c.GameStates = GameStates;
       data = JsonConvert.SerializeObject(c);
       File.WriteAllText(StorageFile, data);
     }
@@ -107,6 +110,22 @@ namespace stereopoly.cache
     {
       CachedBoards.Clear();
       SaveCache();
+    }
+
+    public static void ClearGameStates()
+    {
+      GameStates.Clear();
+      SaveCache();
+    }
+
+    public static List<GameState> GetAllGameStates()
+    {
+      return GameStates;
+    }
+
+    public static void InsertGameState(GameState g)
+    {
+      GameStates.Add(g);
     }
   }
 }

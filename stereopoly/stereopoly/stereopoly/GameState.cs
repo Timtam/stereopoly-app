@@ -25,6 +25,7 @@ namespace stereopoly
 
     public GameState()
     {
+      this.Date = DateTime.Now;
       this.random = new Random();
     }
 
