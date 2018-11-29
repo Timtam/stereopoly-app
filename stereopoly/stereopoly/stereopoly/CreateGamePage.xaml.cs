@@ -113,6 +113,7 @@ namespace stereopoly
       }
 
       b = Storage.GetBoard(id);
+      Navigation.RemovePage(this);
       await Navigation.PushAsync(new GameBoardPage(b));
     }
   }

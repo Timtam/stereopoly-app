@@ -20,5 +20,14 @@ namespace stereopoly
       InitializeComponent ();
       this.board = b;
     }
+
+    public async void OnWatchNews(object sender, EventArgs e)
+    {
+    }
+
+    public async void OnSettings(object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new SettingsPage());
+    }
   }
 }
