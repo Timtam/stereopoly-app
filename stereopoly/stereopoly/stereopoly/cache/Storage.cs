@@ -28,6 +28,7 @@ namespace stereopoly.cache
       if(!File.Exists(StorageFile))
       {
         CachedBoards = new List<Board>();
+        GameStates = new List<GameState>();
         return;
       }
 
@@ -36,6 +37,11 @@ namespace stereopoly.cache
 
       CachedBoards = c.Boards;
       GameStates = c.GameStates;
+      if(CachedBoards == null)
+        CachedBoards = new List<Board>();
+      if(GameStates == null)
+        GameStates = new List<GameState>();
+
     }
 
     public static void SaveCache()
