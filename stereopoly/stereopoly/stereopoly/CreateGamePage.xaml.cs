@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -56,7 +57,10 @@ namespace stereopoly
           Storage.UpdateBoards(boards);
           Storage.BoardUpdateRequired = false;
         }
-        catch (WebException ex)
+        catch (Exception ex) when (
+          ex is WebException ||
+          ex is HttpRequestException
+        )
         {
           boards = null;
           await DisplayAlert("Error", "An error occurred while retrieving the list of known boards: " + ex.Message, "OK");
@@ -78,7 +82,7 @@ namespace stereopoly
           Text = a.Name,
         };
         b.Clicked += async (s,e) => {
-          await this.OnBoardSelect(this.ButtonBoardMapping[(Button)s]);
+                        await this.OnBoardSelect(this.ButtonBoardMapping[(Button)s]);
         };
         this.BoardLayout.Children.Add(b);
         this.ButtonBoardMapping.Add(b, a.ID);
@@ -99,7 +103,10 @@ namespace stereopoly
           b = await Caller.RequestBoard(id);
           Storage.UpdateBoard(b);
         }
-        catch (WebException ex)
+        catch (Exception ex) when(
+          ex is WebException ||
+          ex is HttpRequestException
+        )
         {
           b = null;
           await DisplayAlert("Error", "An error occurred while retrieving board information: " + ex.Message, "OK");

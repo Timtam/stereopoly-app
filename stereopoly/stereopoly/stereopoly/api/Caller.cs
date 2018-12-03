@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 using stereopoly;
 
@@ -30,7 +29,7 @@ namespace stereopoly.api
       u.Path += "boards";
 
       // app version
-      u.Query += "api=" + AppInfo.VersionString;
+      u.Query += "api=" + Constants.APP_VERSION;
 
       resp = await Client.GetAsync(u.Uri);
 
@@ -67,7 +66,7 @@ namespace stereopoly.api
       u.Path += "/" + id;
 
       // app version
-      u.Query += "api=" + AppInfo.VersionString;
+      u.Query += "api=" + Constants.APP_VERSION;
 
       resp = await Client.GetAsync(u.Uri);
 
