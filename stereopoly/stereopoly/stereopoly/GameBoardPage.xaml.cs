@@ -25,13 +25,19 @@ namespace stereopoly
     public async void OnWatchNews(object sender, EventArgs e)
     {
       News n = this.state.GetNextNews();
-      Storage.SaveCache();
       await Navigation.PushAsync(new WatchNewsPage(n));
     }
 
     public async void OnSettings(object sender, EventArgs e)
     {
       await Navigation.PushAsync(new SettingsPage());
+    }
+
+    public async void OnEndGame(object sender, EventArgs e)
+    {
+      Storage.RemoveGameState(this.state);
+      Storage.SaveCache();
+      await Navigation.PopToRootAsync();
     }
   }
 }

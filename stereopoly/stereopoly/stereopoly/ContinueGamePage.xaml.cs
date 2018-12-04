@@ -49,8 +49,8 @@ namespace stereopoly
 
     public async Task OnGameStateSelect(GameState s)
     {
-      Navigation.RemovePage(this);
       await Navigation.PushAsync(new GameBoardPage(s));
+      Navigation.RemovePage(this);
     }
 
     public void OnDeleteAll(object sender, EventArgs e)

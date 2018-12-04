@@ -12,6 +12,7 @@
         <StackLayout>
       <Button x:Name="WatchNewsButton" Text="Watch News" Clicked="OnWatchNews" />
       <Button x:Name="SettingsButton" Text="Settings" Clicked="OnSettings" />
+      <Button x:Name="EndGameButton" Text="End Game" Clicked="OnEndGame" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

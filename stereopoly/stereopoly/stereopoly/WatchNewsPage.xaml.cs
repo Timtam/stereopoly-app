@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using stereopoly.api;
+using stereopoly.cache;
 
 namespace stereopoly
 {
@@ -28,6 +29,7 @@ namespace stereopoly
 
     public async void OnFinish(object sender, EventArgs e)
     {
+      Storage.SaveCache();
       await Navigation.PopAsync();
     }
   }

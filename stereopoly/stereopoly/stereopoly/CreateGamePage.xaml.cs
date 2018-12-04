@@ -123,8 +123,8 @@ namespace stereopoly
       b = Storage.GetBoard(id);
       s = new GameState(b);
       Storage.InsertGameState(s);
-      Navigation.RemovePage(this);
       await Navigation.PushAsync(new GameBoardPage(s));
+      Navigation.RemovePage(this);
     }
   }
 }

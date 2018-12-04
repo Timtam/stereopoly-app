@@ -20,7 +20,8 @@ namespace stereopoly
 
     protected override void OnAppearing()
     {
-      VersionLabel.Text = AppInfo.Name + " v" + AppInfo.VersionString;
+      AppVersionLabel.Text = "App Version " + Constants.APP_VERSION;
+      BuildVersionLabel.Text = "Build Version " + AppInfo.VersionString;
     }
 
     void OnContact(object sender, EventArgs e)

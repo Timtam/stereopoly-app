@@ -133,5 +133,10 @@ namespace stereopoly.cache
     {
       GameStates.Add(g);
     }
+
+    public static void RemoveGameState(GameState s)
+    {
+      GameStates.Remove(s);
+    }
   }
 }
