@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Medallion;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using stereopoly.api;
@@ -19,14 +21,15 @@ namespace stereopoly
     public int CurrentNewsgroup;
     [JsonProperty("current_news")]
     public int CurrentNews;
-
-    [JsonIgnore]
-    private Random random;
+    [JsonProperty("remaining_chance_cards")]
+    public List<int> RemainingChanceCards;
+    
+    [JsonProperty("remaining_community_chest_cards")]
+    public List<int> RemainingCommunityChestCards;
 
     public GameState()
     {
       this.Date = DateTime.Now;
-      this.random = new Random();
     }
 
     public GameState(Board b) : this()
@@ -63,7 +66,7 @@ namespace stereopoly
             this.RemainingNewsgroups.Add(i);
         }
         // we will randomly choose a new newsgroup
-        i = this.random.Next(this.RemainingNewsgroups.Count);
+        i = Rand.Next(0, this.RemainingNewsgroups.Count);
         ng = this.RemainingNewsgroups[i];
         this.RemainingNewsgroups.Remove(ng);
         this.CurrentNewsgroup = ng;
@@ -73,6 +76,34 @@ namespace stereopoly
       this.CurrentNews++;
       this.Date = DateTime.Now;
       return n;
+    }
+
+    public ChanceCard GetNextChanceCard()
+    {
+      ChanceCard c;
+      if(this.RemainingChanceCards == null || this.RemainingChanceCards.Count == 0)
+      {
+        this.RemainingChanceCards = Enumerable.Range(0, this.Board.ChanceCards.Count).ToList();
+        this.RemainingChanceCards.Shuffle();
+      }
+      c = this.Board.ChanceCards[this.RemainingChanceCards[0]];
+      this.RemainingChanceCards.RemoveAt(0);
+      this.Date = DateTime.Now;
+      return c;
+    }
+
+    public CommunityChestCard GetNextCommunityChestCard()
+    {
+      CommunityChestCard c;
+      if(this.RemainingCommunityChestCards == null || this.RemainingCommunityChestCards.Count == 0)
+      {
+        this.RemainingCommunityChestCards = Enumerable.Range(0, this.Board.CommunityChestCards.Count).ToList();
+        this.RemainingCommunityChestCards.Shuffle();
+      }
+      c = this.Board.CommunityChestCards[this.RemainingCommunityChestCards[0]];
+      this.RemainingCommunityChestCards.RemoveAt(0);
+      this.Date = DateTime.Now;
+      return c;
     }
   }
 }
