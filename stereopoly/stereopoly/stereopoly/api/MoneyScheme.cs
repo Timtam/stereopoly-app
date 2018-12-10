@@ -7,8 +7,6 @@ namespace stereopoly.api
   {
     [JsonProperty("name")]
     public string Name;
-    [JsonProperty("id")]
-    public int ID;
     [JsonProperty("money")]
     public List<int> Money;
   }

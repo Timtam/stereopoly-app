@@ -15,5 +15,9 @@ namespace stereopoly.api
     public MoneyScheme MoneyScheme;
     [JsonProperty("newsgroups")]
     public List<Newsgroup> Newsgroups;
+    [JsonProperty("chance_cards")]
+    public List<ChanceCard> ChanceCards;
+    [JsonProperty("community_chest_cards")]
+    public List<CommunityChestCard> CommunityChestCards;
   }
 }
