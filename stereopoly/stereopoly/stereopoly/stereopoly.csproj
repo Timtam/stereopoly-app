@@ -20,6 +20,9 @@
     <Compile Update="GameBoardPage.xaml.cs">
       <DependentUpon>GameBoardPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="WatchPage.xaml.cs">
+      <DependentUpon>WatchPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +44,7 @@
     <EmbeddedResource Update="SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="WatchNewsPage.xaml">
+    <EmbeddedResource Update="WatchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

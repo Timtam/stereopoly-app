@@ -13,13 +13,13 @@ using stereopoly.cache;
 namespace stereopoly
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class WatchNewsPage : ContentPage
+  public partial class WatchPage : ContentPage
   {
 
-    public WatchNewsPage(News n)
+    public WatchPage(Watchable w)
     {
       InitializeComponent();
-      this.NewsLabel.Text = n.Text;
+      this.TextLabel.Text = w.Text;
     }
 
     protected override void OnAppearing()

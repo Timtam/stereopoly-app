@@ -3,9 +3,7 @@ using System;
 
 namespace stereopoly.api
 {
-  public class CommunityChestCard
+  public class CommunityChestCard : Watchable
   {
-    [JsonProperty("text")]
-    public string Text;
   }
 }

@@ -25,7 +25,19 @@ namespace stereopoly
     public async void OnWatchNews(object sender, EventArgs e)
     {
       News n = this.state.GetNextNews();
-      await Navigation.PushAsync(new WatchNewsPage(n));
+      await Navigation.PushAsync(new WatchPage(n));
+    }
+
+    public async void OnDrawChanceCard(object sender, EventArgs e)
+    {
+      ChanceCard c = this.state.GetNextChanceCard();
+      await Navigation.PushAsync(new WatchPage(c));
+    }
+
+    public async void OnDrawCommunityChestCard(object sender, EventArgs e)
+    {
+      CommunityChestCard c = this.state.GetNextCommunityChestCard();
+      await Navigation.PushAsync(new WatchPage(c));
     }
 
     public async void OnSettings(object sender, EventArgs e)

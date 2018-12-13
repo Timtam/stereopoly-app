@@ -2,9 +2,7 @@
 
 namespace stereopoly.api
 {
-  public class News
+  public class News : Watchable
   {
-    [JsonProperty("text")]
-    public string Text;
   }
 }
