@@ -11,5 +11,7 @@ namespace stereopoly.cache
     public List<Board> Boards;
     [JsonProperty("game_states")]
     public List<GameState> GameStates;
+    [JsonProperty("board_language")]
+    public Language BoardLanguage;
   }
 }

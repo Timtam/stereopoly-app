@@ -10,6 +10,7 @@ namespace stereopoly.cache
 {
   public static class Storage
   {
+    private static Language BoardLanguage;
     private static List<Board> CachedBoards;
     private static List<GameState> GameStates;
     private static string StorageFile;
@@ -29,18 +30,22 @@ namespace stereopoly.cache
       {
         CachedBoards = new List<Board>();
         GameStates = new List<GameState>();
+        InitializeDefaultBoardLanguage();
         return;
       }
 
       data = File.ReadAllText(StorageFile);
       c = JsonConvert.DeserializeObject<CacheLayout>(data);
 
+      BoardLanguage = c.BoardLanguage;
       CachedBoards = c.Boards;
       GameStates = c.GameStates;
       if(CachedBoards == null)
         CachedBoards = new List<Board>();
       if(GameStates == null)
         GameStates = new List<GameState>();
+      if(BoardLanguage == null)
+        InitializeDefaultBoardLanguage();
 
     }
 
@@ -48,6 +53,7 @@ namespace stereopoly.cache
     {
       CacheLayout c = new CacheLayout();
       string data;
+      c.BoardLanguage = BoardLanguage;
       c.Boards = CachedBoards;
       c.GameStates = GameStates;
       data = JsonConvert.SerializeObject(c);
@@ -137,6 +143,18 @@ namespace stereopoly.cache
     public static void RemoveGameState(GameState s)
     {
       GameStates.Remove(s);
+    }
+
+    private static void InitializeDefaultBoardLanguage()
+    {
+      BoardLanguage = new Language();
+      BoardLanguage.Name = "English";
+      BoardLanguage.Code = "en";
+    }
+
+    public static Language GetBoardLanguage()
+    {
+      return BoardLanguage;
     }
   }
 }

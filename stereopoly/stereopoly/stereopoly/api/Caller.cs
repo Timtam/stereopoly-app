@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using UriExtend;
 
 using stereopoly;
+using stereopoly.cache;
 
 namespace stereopoly.api
 {
@@ -23,15 +26,7 @@ namespace stereopoly.api
       Error e;
       HttpResponseMessage resp;
       string data;
-      UriBuilder u = new UriBuilder(Constants.API_URL);
-      
-      // adding boards
-      u.Path += "boards";
-
-      // app version
-      u.Query += "api=" + Constants.APP_VERSION;
-
-      resp = await Client.GetAsync(u.Uri);
+      resp = await Client.GetAsync(BuildUri("/boards"));
 
       try
       {
@@ -59,16 +54,8 @@ namespace stereopoly.api
       Error e;
       HttpResponseMessage resp;
       string data;
-      UriBuilder u = new UriBuilder(Constants.API_URL);
-      
-      // adding boards
-      u.Path += "boards";
-      u.Path += "/" + id;
 
-      // app version
-      u.Query += "api=" + Constants.APP_VERSION;
-
-      resp = await Client.GetAsync(u.Uri);
+      resp = await Client.GetAsync(BuildUri("/boards/" + id));
 
       try
       {
@@ -89,6 +76,20 @@ namespace stereopoly.api
       {
         throw(ex.InnerException);
       }
+    }
+
+    private static Uri BuildUri(string path)
+    {
+      string p = "/api";
+      if(!path.StartsWith("/"))
+        p += "/";
+      p += path;
+      return new UriBuilder(Constants.API_URL)
+      {
+        Path = p
+      }.Uri
+      .AddQuery(new { api = Constants.APP_VERSION })
+      .AddQuery(new { language = Storage.GetBoardLanguage().Code });
     }
   }
 }
