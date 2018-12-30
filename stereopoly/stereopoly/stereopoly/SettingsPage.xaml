@@ -10,6 +10,7 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
+      <Button x:Name="ChangeBoardLanguageButton" Clicked="OnChangeBoardLanguage" />
       <Button x:Name="ClearCacheButton" Text="Clear Cache" Clicked="OnClearCache" />
         </StackLayout>
     </ContentPage.Content>

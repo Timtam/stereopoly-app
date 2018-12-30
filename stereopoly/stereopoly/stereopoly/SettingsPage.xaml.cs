@@ -22,10 +22,10 @@ namespace stereopoly
     void OnClearCache(object sender, EventArgs e)
     {
       Storage.ClearCache();
-      this.UpdateClearCacheButtonState();
+      this.UpdateClearCacheButton();
     }
 
-    void UpdateClearCacheButtonState()
+    void UpdateClearCacheButton()
     {
       if(Storage.GetAllBoards().Count == 0)
         this.ClearCacheButton.IsEnabled = false;
@@ -35,7 +35,18 @@ namespace stereopoly
 
     protected override void OnAppearing()
     {
-      this.UpdateClearCacheButtonState();
+      this.UpdateClearCacheButton();
+      this.UpdateChangeBoardLanguageButton();
+    }
+
+    public void UpdateChangeBoardLanguageButton()
+    {
+      this.ChangeBoardLanguageButton.Text = "Board language: " + Storage.GetBoardLanguage().Name;
+    }
+
+    public async void OnChangeBoardLanguage(object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new BoardLanguagePage());
     }
   }
 }

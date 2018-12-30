@@ -122,6 +122,7 @@ namespace stereopoly.cache
     {
       CachedBoards.Clear();
       SaveCache();
+      BoardUpdateRequired = true;
     }
 
     public static void ClearGameStates()
@@ -155,6 +156,12 @@ namespace stereopoly.cache
     public static Language GetBoardLanguage()
     {
       return BoardLanguage;
+    }
+
+    public static void SetBoardLanguage(Language l)
+    {
+      BoardLanguage = l;
+      ClearCache();
     }
   }
 }
