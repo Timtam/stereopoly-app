@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:stereopoly"
-             x:Class="stereopoly.MainPage">
+             x:Class="stereopoly.MainPage"
+             xmlns:i18n="clr-namespace:stereopoly;assembly=stereopoly">
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
@@ -11,7 +12,7 @@
         </OnPlatform>
     </ContentPage.Padding>
     <StackLayout>
-      <Button x:Name="CreateGameButton" Text="Create new game" Clicked="OnCreate" />
+      <Button x:Name="CreateGameButton" Text="{i18n:Translate CreateNewGameButton}" Clicked="OnCreate" />
       <Button x:Name="ContinueGameButton" Text="Continue Game" Clicked="OnContinue" />
       <Button x:Name="SettingsButton" Text="Settings" Clicked="OnSettings" />
       <Button x:Name="HelpButton" Text="Help" Clicked="OnHelp" />
