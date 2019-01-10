@@ -12,7 +12,7 @@ namespace stereopoly
   public class TranslateExtension : IMarkupExtension
   {
     readonly CultureInfo ci = null;
-    const string ResourceId = "stereopoly.AppResources";
+    const string ResourceId = "stereopoly.resx.AppResources";
 
     static readonly Lazy<ResourceManager> ResMgr = new Lazy<ResourceManager>(
       () => new ResourceManager(ResourceId, IntrospectionExtensions.GetTypeInfo(typeof(TranslateExtension)).Assembly));

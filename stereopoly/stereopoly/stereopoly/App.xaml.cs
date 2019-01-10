@@ -4,6 +4,8 @@ using System.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using stereopoly.resx;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace stereopoly
 {
