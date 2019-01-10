@@ -102,4 +102,68 @@
     <value>Create new game</value>
     <comment>button for new game creation</comment>
 </data>
+<data name="ContinueGameButton" xml:space="preserve">
+    <value>Continue game</value>
+    <comment>button for resuming a game</comment>
+</data>
+<data name="SettingsButton" xml:space="preserve">
+    <value>Settings</value>
+    <comment>button for opening the settings</comment>
+</data>
+<data name="HelpButton" xml:space="preserve">
+    <value>Help</value>
+    <comment>button for showing helpful tips</comment>
+</data>
+<data name="CreditsButton" xml:space="preserve">
+    <value>About</value>
+    <comment>button for showing developer-related information</comment>
+</data>
+<data name="RefreshGameBoardsButton" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>button to retrieve all boards from the server</comment>
+</data>
+<data name="ErrorText" xml:space="preserve">
+    <value>Error</value>
+    <comment>text shown whenever an error occurs (mainly in alert titles)</comment>
+</data>
+<data name="GameBoardsRetrievalError" xml:space="preserve">
+    <value>An error occurred while retrieving the list of known boards:</value>
+    <comment>text shown when encountering an error on board list retrieval</comment>
+</data>
+<data name="OKText" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK text</comment>
+</data>
+<data name="GameBoardRetrievalError" xml:space="preserve">
+    <value>An error occurred while retrieving board information:</value>
+    <comment>text shown when encountering an error on single board retrieval</comment>
+</data>
+<data name="DeleteAllGameStatesButton" xml:space="preserve">
+    <value>Delete all games</value>
+    <comment>button to delete all currently running games</comment>
+</data>
+<data name="ClearCacheButton" xml:space="preserve">
+    <value>Clear Cache</value>
+    <comment>button to clear internet cache</comment>
+</data>
+<data name="WatchNewsButton" xml:space="preserve">
+    <value>Watch News</value>
+    <comment>button to watch next news</comment>
+</data>
+<data name="DrawChanceCardButton" xml:space="preserve">
+    <value>Draw Chance Card</value>
+    <comment>button to draw next chance card</comment>
+</data>
+<data name="DrawCommunityChestCardButton" xml:space="preserve">
+    <value>Draw Community Chest Card</value>
+    <comment>button to draw next community chest card</comment>
+</data>
+<data name="EndGameButton" xml:space="preserve">
+    <value>End Game</value>
+    <comment>button to end the game without saving</comment>
+</data>
+<data name="FinishButton" xml:space="preserve">
+    <value>Finish</value>
+    <comment>button to close the watch screen</comment>
+</data>
 </root>

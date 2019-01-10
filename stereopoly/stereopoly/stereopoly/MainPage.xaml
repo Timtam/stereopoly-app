@@ -13,10 +13,10 @@
     </ContentPage.Padding>
     <StackLayout>
       <Button x:Name="CreateGameButton" Text="{i18n:Translate CreateNewGameButton}" Clicked="OnCreate" />
-      <Button x:Name="ContinueGameButton" Text="Continue Game" Clicked="OnContinue" />
-      <Button x:Name="SettingsButton" Text="Settings" Clicked="OnSettings" />
-      <Button x:Name="HelpButton" Text="Help" Clicked="OnHelp" />
-      <Button x:Name="CreditsButton" Text="About" Clicked="OnCredits" />
+      <Button x:Name="ContinueGameButton" Text="{i18n:Translate ContinueGameButton}" Clicked="OnContinue" />
+      <Button x:Name="SettingsButton" Text="{i18n:Translate SettingsButton}" Clicked="OnSettings" />
+      <Button x:Name="HelpButton" Text="{i18n:Translate HelpButton}" Clicked="OnHelp" />
+      <Button x:Name="CreditsButton" Text="{i18n:Translate CreditsButton}" Clicked="OnCredits" />
     </StackLayout>
 
 </ContentPage>

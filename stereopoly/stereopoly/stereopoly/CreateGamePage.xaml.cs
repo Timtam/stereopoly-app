@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 
 using stereopoly.api;
 using stereopoly.cache;
+using stereopoly.resx;
 
 namespace stereopoly
 {
@@ -63,7 +64,7 @@ namespace stereopoly
         )
         {
           boards = null;
-          await DisplayAlert("Error", "An error occurred while retrieving the list of known boards: " + ex.Message, "OK");
+          await DisplayAlert(AppResources.ErrorText, AppResources.GameBoardsRetrievalError + " " + ex.Message, AppResources.OKText);
         }
         finally
         {
@@ -109,7 +110,7 @@ namespace stereopoly
         )
         {
           b = null;
-          await DisplayAlert("Error", "An error occurred while retrieving board information: " + ex.Message, "OK");
+          await DisplayAlert(AppResources.ErrorText, AppResources.GameBoardRetrievalError + " " + ex.Message, AppResources.OKText);
         }
         finally
         {

@@ -99,7 +99,71 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 <data name="CreateNewGameButton" xml:space="preserve">
-    <value>Neues Spiel</value>
+    <value>Neues Spiel erstellen</value>
     <comment>button for new game creation</comment>
+</data>
+<data name="ContinueGameButton" xml:space="preserve">
+    <value>Spiel fortsetzen</value>
+    <comment>button for resuming a game</comment>
+</data>
+<data name="SettingsButton" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>button for opening the settings</comment>
+</data>
+<data name="HelpButton" xml:space="preserve">
+    <value>Hilfe</value>
+    <comment>button for showing helpful tips</comment>
+</data>
+<data name="CreditsButton" xml:space="preserve">
+    <value>Über diese App</value>
+    <comment>button for showing developer-related information</comment>
+</data>
+<data name="RefreshGameBoardsButton" xml:space="preserve">
+    <value>Aktualisieren</value>
+    <comment>button to retrieve all boards from the server</comment>
+</data>
+<data name="ErrorText" xml:space="preserve">
+    <value>Fehler</value>
+    <comment>text shown whenever an error occurs (mainly in alert titles)</comment>
+</data>
+<data name="GameBoardsRetrievalError" xml:space="preserve">
+    <value>Ein Fehler ist beim Erhalt der verfügbaren Spielbretter aufgetreten:</value>
+    <comment>text shown when encountering an error on board list retrieval</comment>
+</data>
+<data name="OKText" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK text</comment>
+</data>
+<data name="GameBoardRetrievalError" xml:space="preserve">
+    <value>Ein Fehler ist beim Erhalt der Informationen des Spielbretts aufgetreten:</value>
+    <comment>text shown when encountering an error on single board retrieval</comment>
+</data>
+<data name="DeleteAllGameStatesButton" xml:space="preserve">
+    <value>Alle Spiele löschen</value>
+    <comment>button to delete all currently running games</comment>
+</data>
+<data name="ClearCacheButton" xml:space="preserve">
+    <value>Cache löschen</value>
+    <comment>button to clear internet cache</comment>
+</data>
+<data name="WatchNewsButton" xml:space="preserve">
+    <value>Nachrichten ansehen</value>
+    <comment>button to watch next news</comment>
+</data>
+<data name="DrawChanceCardButton" xml:space="preserve">
+    <value>Eine Ereigniskarte ziehen</value>
+    <comment>button to draw next chance card</comment>
+</data>
+<data name="DrawCommunityChestCardButton" xml:space="preserve">
+    <value>Eine Gemeinschaftskarte ziehen</value>
+    <comment>button to draw next community chest card</comment>
+</data>
+<data name="EndGameButton" xml:space="preserve">
+    <value>Spiel beenden</value>
+    <comment>button to end the game without saving</comment>
+</data>
+<data name="FinishButton" xml:space="preserve">
+    <value>Beenden</value>
+    <comment>button to end the game without saving</comment>
 </data>
 </root>

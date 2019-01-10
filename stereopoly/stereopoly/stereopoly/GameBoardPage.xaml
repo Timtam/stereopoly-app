@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="stereopoly.GameBoardPage">
+             x:Class="stereopoly.GameBoardPage"
+             xmlns:i18n="clr-namespace:stereopoly;assembly=stereopoly">
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness">
       <On Platform="iOS" Value="20, 40, 20, 20" />
@@ -10,11 +11,11 @@
   </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
-      <Button x:Name="WatchNewsButton" Text="Watch News" Clicked="OnWatchNews" />
-      <Button x:Name="DrawChanceCardButton" Text="Draw Chance Card" Clicked="OnDrawChanceCard" />
-      <Button x:Name="DrawCommunityChestCardButton" Text="Draw Community Chest Card" Clicked="OnDrawCommunityChestCard" />
-      <Button x:Name="SettingsButton" Text="Settings" Clicked="OnSettings" />
-      <Button x:Name="EndGameButton" Text="End Game" Clicked="OnEndGame" />
+      <Button x:Name="WatchNewsButton" Text="{i18n:Translate WatchNewsButton}" Clicked="OnWatchNews" />
+      <Button x:Name="DrawChanceCardButton" Text="{i18n:Translate DrawChanceCardButton}" Clicked="OnDrawChanceCard" />
+      <Button x:Name="DrawCommunityChestCardButton" Text="{i18n:Translate DrawCommunityChestCardButton}" Clicked="OnDrawCommunityChestCard" />
+      <Button x:Name="SettingsButton" Text="{i18n:Translate SettingsButton}" Clicked="OnSettings" />
+      <Button x:Name="EndGameButton" Text="{i18n:Translate EndGameButton}" Clicked="OnEndGame" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
