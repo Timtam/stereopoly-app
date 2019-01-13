@@ -21,7 +21,7 @@ namespace stereopoly
 
     public TranslateExtension()
     {
-      if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+      if (Device.RuntimePlatform != Device.UWP)
       {
         ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
       }
