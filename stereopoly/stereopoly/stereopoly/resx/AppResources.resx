@@ -166,4 +166,8 @@
     <value>Finish</value>
     <comment>button to close the watch screen</comment>
 </data>
+<data name="UpdateInProgressText" xml:space="preserve">
+    <value>We're currently updating the game, please wait...</value>
+    <comment>text shown during the update progress whenever launching the game (if applicable)</comment>
+</data>
 </root>

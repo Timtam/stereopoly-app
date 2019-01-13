@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using stereopoly;
 using stereopoly.api;
 
 namespace stereopoly.cache
@@ -15,6 +16,7 @@ namespace stereopoly.cache
     private static List<GameState> GameStates;
     private static string StorageFile;
     public static bool BoardUpdateRequired = true;
+    public static bool OlderConfiguration = true;
 
     static Storage()
     {
@@ -46,6 +48,8 @@ namespace stereopoly.cache
         GameStates = new List<GameState>();
       if(BoardLanguage == null)
         InitializeDefaultBoardLanguage();
+      if(c.Version != Constants.APP_VERSION)
+        OlderConfiguration = false;
 
     }
 
@@ -56,8 +60,10 @@ namespace stereopoly.cache
       c.BoardLanguage = BoardLanguage;
       c.Boards = CachedBoards;
       c.GameStates = GameStates;
+      c.Version = Constants.APP_VERSION;
       data = JsonConvert.SerializeObject(c);
       File.WriteAllText(StorageFile, data);
+      OlderConfiguration = false;
     }
 
     public static void UpdateBoard(Board b)
