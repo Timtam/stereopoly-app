@@ -16,5 +16,17 @@ namespace stereopoly
     {
       InitializeComponent();
     }
+
+    protected override void OnAppearing()
+    {
+      Device.StartTimer(new TimeSpan(0, 0, 0, 0, 500), () =>
+      {
+        Device.BeginInvokeOnMainThread(async () =>
+        {
+          await ((App)App.Current).SetMainPage();
+        });
+        return false;
+      });
+    }
   }
 }

@@ -48,7 +48,7 @@ namespace stereopoly.cache
         GameStates = new List<GameState>();
       if(BoardLanguage == null)
         InitializeDefaultBoardLanguage();
-      if(c.Version != Constants.APP_VERSION)
+      if(c.Version == Constants.APP_VERSION)
         OlderConfiguration = false;
 
     }
