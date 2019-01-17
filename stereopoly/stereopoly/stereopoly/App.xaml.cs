@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using stereopoly.api;
 using stereopoly.cache;
 using stereopoly.resx;
 
@@ -20,15 +21,11 @@ namespace stereopoly
 
     protected async override void OnStart()
     {
+      bool conf = Storage.OlderConfiguration;
       // Handle when your app starts
-      if (Device.RuntimePlatform != Device.UWP)
-      {
-        var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-        AppResources.Culture = ci; // set the RESX for resource localization
-        DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
-      }
+      this.UpdateAppLanguage();
 
-      if(Storage.OlderConfiguration == true)
+      if(conf == true)
         this.SetUpdatingPage();
       else
         await this.SetMainPage();
@@ -53,6 +50,39 @@ namespace stereopoly
     {
       this.MainPage = new NavigationPage(new MainPage());
       await this.MainPage.Navigation.PopToRootAsync();
+    }
+
+    public void UpdateAppLanguage()
+    {
+      CultureInfo ci;
+      Language l;
+
+      if(Storage.GetCurrentLanguage().Local == true)
+      {
+        ci = new CultureInfo(Storage.GetCurrentLanguage().Code);
+        AppResources.Culture = ci;
+        if(Device.RuntimePlatform != Device.UWP)
+          DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+      }
+      else
+      {
+        if (Device.RuntimePlatform != Device.UWP)
+          ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+        else
+          ci = CultureInfo.CurrentCulture;
+
+        l = new Language{
+          Name = ci.EnglishName,
+          Code = ci.TwoLetterISOLanguageName
+        };
+
+        Storage.SetCurrentLanguage(l);
+        if(Device.RuntimePlatform != Device.UWP)
+        {
+          AppResources.Culture = ci; // set the RESX for resource localization
+          DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+        }
+      }
     }
   }
 }

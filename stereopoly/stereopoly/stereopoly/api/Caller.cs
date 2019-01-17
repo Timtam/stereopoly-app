@@ -120,7 +120,7 @@ namespace stereopoly.api
       .AddQuery(new { api = Constants.APP_VERSION });
 
       if(language)
-        u = u.AddQuery(new { language = Storage.GetBoardLanguage().Code });
+        u = u.AddQuery(new { language = Storage.GetCurrentLanguage().Code });
       return u;
     }
 

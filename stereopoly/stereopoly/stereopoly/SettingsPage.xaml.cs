@@ -41,7 +41,7 @@ namespace stereopoly
 
     public void UpdateChangeBoardLanguageButton()
     {
-      this.ChangeBoardLanguageButton.Text = "Board language: " + Storage.GetBoardLanguage().Name;
+      this.ChangeBoardLanguageButton.Text = "Board language: " + Storage.GetCurrentLanguage().Name;
     }
 
     public async void OnChangeBoardLanguage(object sender, EventArgs e)

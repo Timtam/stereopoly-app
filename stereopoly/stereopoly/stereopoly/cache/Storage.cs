@@ -11,7 +11,8 @@ namespace stereopoly.cache
 {
   public static class Storage
   {
-    private static Language BoardLanguage;
+    private static Language CurrentLanguage;
+    private static List<Language> AvailableLanguages;
     private static List<Board> CachedBoards;
     private static List<GameState> GameStates;
     private static string StorageFile;
@@ -32,22 +33,23 @@ namespace stereopoly.cache
       {
         CachedBoards = new List<Board>();
         GameStates = new List<GameState>();
-        InitializeDefaultBoardLanguage();
+        InitializeLanguages();
         return;
       }
 
       data = File.ReadAllText(StorageFile);
       c = JsonConvert.DeserializeObject<CacheLayout>(data);
 
-      BoardLanguage = c.BoardLanguage;
+      CurrentLanguage = c.CurrentLanguage;
+      AvailableLanguages = c.AvailableLanguages;
       CachedBoards = c.Boards;
       GameStates = c.GameStates;
       if(CachedBoards == null)
         CachedBoards = new List<Board>();
       if(GameStates == null)
         GameStates = new List<GameState>();
-      if(BoardLanguage == null)
-        InitializeDefaultBoardLanguage();
+      if(CurrentLanguage == null || AvailableLanguages == null || AvailableLanguages.Count == 0)
+        InitializeLanguages();
       if(c.Version == Constants.APP_VERSION)
         OlderConfiguration = false;
 
@@ -57,7 +59,8 @@ namespace stereopoly.cache
     {
       CacheLayout c = new CacheLayout();
       string data;
-      c.BoardLanguage = BoardLanguage;
+      c.CurrentLanguage = CurrentLanguage;
+      c.AvailableLanguages = AvailableLanguages;
       c.Boards = CachedBoards;
       c.GameStates = GameStates;
       c.Version = Constants.APP_VERSION;
@@ -152,22 +155,88 @@ namespace stereopoly.cache
       GameStates.Remove(s);
     }
 
-    private static void InitializeDefaultBoardLanguage()
+    private static void InitializeLanguages()
     {
-      BoardLanguage = new Language();
-      BoardLanguage.Name = "English";
-      BoardLanguage.Code = "en";
+      AvailableLanguages = new List<Language>();
+      CurrentLanguage = new Language{
+        Name = "English",
+        Code = "en"
+      };
     }
 
-    public static Language GetBoardLanguage()
+    public static Language GetCurrentLanguage()
     {
-      return BoardLanguage;
+      return CurrentLanguage;
     }
 
-    public static void SetBoardLanguage(Language l)
+    public static void SetCurrentLanguage(Language l)
     {
-      BoardLanguage = l;
+      CurrentLanguage = l;
       ClearCache();
+    }
+
+    // clears all available languages with the given indicator
+    // if local is true, all local languages, else all remotely available ones
+    // if a language got both local and remote == false,
+    // this language will be purged from the list
+    public static void ClearAvailableLanguages(bool local = false)
+    {
+      int i = 0;
+
+      if(AvailableLanguages == null || AvailableLanguages.Count == 0)
+        return;
+
+      do
+      {
+        if(local == true)
+          AvailableLanguages[i].Local = false;
+        else
+          AvailableLanguages[i].Remote = false;
+        if(AvailableLanguages[i].Remote == false && AvailableLanguages[i].Local == false)
+        {
+          AvailableLanguages.RemoveAt(i);
+          continue;
+        }
+        i++;
+      }
+      while(i < AvailableLanguages.Count);
+    }
+
+    // "adds" the language
+    // if a language with that code already exists, nothing happens
+    // if it exists and the remote / local tags are not equal, copy them over
+    // if it doesn't exist, add it in
+    public static void UpdateAvailableLanguage(Language l, bool local = false)
+    {
+      List<Language> found;
+
+      if(AvailableLanguages == null)
+        AvailableLanguages = new List<Language>();
+
+      found = AvailableLanguages.Where(o => o.Code == l.Code).ToList();
+
+      if(found.Count == 0)
+      {
+        AvailableLanguages.Add(l);
+      }
+      else
+      {
+
+        if(local == true && found[0].Local != l.Local)
+          found[0].Local = l.Local;
+        else if(local == false && found[0].Remote != l.Remote)
+          found[0].Remote = l.Remote;
+      }
+
+      if(CurrentLanguage.Code == l.Code)
+      {
+        if(local == true && CurrentLanguage.Local != l.Local)
+          CurrentLanguage.Local = l.Local;
+        else if(local == false && CurrentLanguage.Remote != l.Remote)
+          CurrentLanguage.Remote = l.Remote;
+      }
+
+      SaveCache();
     }
   }
 }

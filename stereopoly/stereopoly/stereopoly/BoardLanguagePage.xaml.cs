@@ -83,7 +83,7 @@ namespace stereopoly
 
     public async Task OnLanguageSelect(Language l)
     {
-      Storage.SetBoardLanguage(l);
+      Storage.SetCurrentLanguage(l);
       await Navigation.PopAsync();
     }
 

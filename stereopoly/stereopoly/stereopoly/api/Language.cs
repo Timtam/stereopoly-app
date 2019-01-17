@@ -8,5 +8,9 @@ namespace stereopoly.api
     public string Name;
     [JsonProperty("code")]
     public string Code;
+    [JsonProperty("remote")]
+    public bool Remote = false;
+    [JsonProperty("local")]
+    public bool Local = false;
   }
 }
