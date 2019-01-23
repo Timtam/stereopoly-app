@@ -46,7 +46,7 @@ namespace stereopoly
 
     public async void OnChangeBoardLanguage(object sender, EventArgs e)
     {
-      await Navigation.PushAsync(new BoardLanguagePage());
+      await Navigation.PushAsync(new LanguageSelectionPage());
     }
   }
 }

@@ -10,15 +10,16 @@ using Xamarin.Forms.Xaml;
 
 using stereopoly.api;
 using stereopoly.cache;
+using stereopoly.resx;
 
 namespace stereopoly
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class BoardLanguagePage : ContentPage
+  public partial class LanguageSelectionPage : ContentPage
   {
     private Dictionary<Button, Language> ButtonLanguageMapping;
 
-    public BoardLanguagePage ()
+    public LanguageSelectionPage ()
     {
       InitializeComponent ();
       this.ButtonLanguageMapping = new Dictionary<Button, Language>();
@@ -42,6 +43,8 @@ namespace stereopoly
       int i;
       Language l;
       List<Language> languages;
+
+      String text;
       this.DownloadingIndicator.IsRunning = true;
       this.RefreshButton.IsEnabled = false;
       try
@@ -70,8 +73,24 @@ namespace stereopoly
       for(i=0; i < languages.Count; i++)
       {
         l = languages[i];
+        l.Remote = true;
+        Storage.UpdateAvailableLanguage(l, local: false);
+      }
+
+      languages = Storage.GetAvailableLanguages();
+
+      for(i=0; i < languages.Count; i++)
+      {
+        l = languages[i];
+        text = l.Name;
+        
+        if(l.Remote == false)
+          text += " (" + AppResources.OnlyLocalLanguageText + ")";
+        else if(l.Local == false)
+          text += " (" + AppResources.OnlyRemoteLanguageText + ")";
+
         b = new Button {
-          Text = l.Name,
+          Text = text,
         };
         b.Clicked += async (s,e) => {
           await this.OnLanguageSelect(this.ButtonLanguageMapping[(Button)s]);
@@ -84,6 +103,7 @@ namespace stereopoly
     public async Task OnLanguageSelect(Language l)
     {
       Storage.SetCurrentLanguage(l);
+      ((App)App.Current).UpdateAppLanguage();
       await Navigation.PopAsync();
     }
 

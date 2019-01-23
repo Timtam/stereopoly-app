@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="LanguageSelectionPage.xaml.cs">
+      <DependentUpon>LanguageSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="resx\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -36,7 +39,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="BoardLanguagePage.xaml">
+    <EmbeddedResource Update="LanguageSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ContinueGamePage.xaml">

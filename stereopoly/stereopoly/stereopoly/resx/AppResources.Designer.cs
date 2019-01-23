@@ -80,5 +80,17 @@ namespace stereopoly.resx {
         return ResourceManager.GetString("GameBoardRetrievalError", resourceCulture);
       }
     }
+
+    internal static string OnlyRemoteLanguageText {
+      get {
+        return ResourceManager.GetString("OnlyRemoteLanguageText", resourceCulture);
+      }
+    }
+
+    internal static string OnlyLocalLanguageText {
+      get {
+        return ResourceManager.GetString("OnlyRemoteLanguageText", resourceCulture);
+      }
+    }
   }
 }

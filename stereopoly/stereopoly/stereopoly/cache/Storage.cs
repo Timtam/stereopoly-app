@@ -238,5 +238,10 @@ namespace stereopoly.cache
 
       SaveCache();
     }
+
+    public static List<Language> GetAvailableLanguages()
+    {
+      return AvailableLanguages;
+    }
   }
 }

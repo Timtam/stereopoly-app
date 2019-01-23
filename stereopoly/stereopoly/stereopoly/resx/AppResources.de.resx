@@ -170,4 +170,12 @@
     <value>Das Spiel wird aktualisiert, bitte warten...</value>
     <comment>text shown during the update progress whenever launching the game (if applicable)</comment>
 </data>
+<data name="OnlyLocalLanguageText" xml:space="preserve">
+    <value>nur für Benutzeroberfläche verfügbar</value>
+    <comment>indicator that language is only available for the user interface</comment>
+</data>
+<data name="OnlyRemoteLanguageText" xml:space="preserve">
+    <value>nur für Spielbretter verfügbar</value>
+    <comment>indicator for languages only available for server-side texts</comment>
+</data>
 </root>
