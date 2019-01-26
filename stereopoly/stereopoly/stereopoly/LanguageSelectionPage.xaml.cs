@@ -105,6 +105,8 @@ namespace stereopoly
       Storage.SetCurrentLanguage(l);
       ((App)App.Current).UpdateAppLanguage();
       await Navigation.PopAsync();
+      await ((App)App.Current).SetMainPage();
+      await ((App)App.Current).MainPage.Navigation.PushAsync(new SettingsPage());
     }
 
     public async void OnCancel(object sender, EventArgs e)

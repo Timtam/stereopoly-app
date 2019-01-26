@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
 using System.Threading.Tasks;
@@ -60,27 +59,21 @@ namespace stereopoly
 
       if(Storage.GetCurrentLanguage().Local == true)
       {
-        Debug.WriteLine("found already set local language");
         ci = new CultureInfo(Storage.GetCurrentLanguage().Code);
         AppResources.Culture = ci;
         CultureInfo.CurrentCulture = ci;
         CultureInfo.CurrentUICulture = ci;
         CultureInfo.DefaultThreadCurrentCulture = ci;
         CultureInfo.DefaultThreadCurrentUICulture = ci;
-        Debug.WriteLine("set culture, now calling dependency service");
-        //Thread.CurrentThread.CurrentCulture = ci;
-        //Thread.CurrentThread.CurrentUICulture = ci;
-        DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
-        Debug.WriteLine("dependency handler called");
+        if(Device.RuntimePlatform != Device.UWP)
+          DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
       }
       else
       {
-        Debug.WriteLine("using current culture info for now");
         if (Device.RuntimePlatform != Device.UWP)
           ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
         else
           ci = CultureInfo.CurrentCulture;
-        Debug.WriteLine("culture info for " + ci.Name + " found");
 
         l = new Language{
           Name = ci.EnglishName,
@@ -88,13 +81,13 @@ namespace stereopoly
         };
 
         Storage.SetCurrentLanguage(l);
-        Debug.WriteLine("language set in storage, now updating culture info");
         CultureInfo.CurrentCulture = ci;
         CultureInfo.CurrentUICulture = ci;
+        CultureInfo.DefaultThreadCurrentCulture = ci;
+        CultureInfo.DefaultThreadCurrentUICulture = ci;
         AppResources.Culture = ci; // set the RESX for resource localization
-        Debug.WriteLine("calling dependency service");
-        DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
-        Debug.WriteLine("dependency service called");
+        if(Device.RuntimePlatform != Device.UWP)
+          DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
       }
     }
   }
