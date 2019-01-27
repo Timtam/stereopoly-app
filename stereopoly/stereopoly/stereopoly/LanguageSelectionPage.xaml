@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="stereopoly.LanguageSelectionPage">
+             x:Class="stereopoly.LanguageSelectionPage"
+             xmlns:i18n="clr-namespace:stereopoly;assembly=stereopoly">
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness">
       <On Platform="iOS" Value="20, 40, 20, 20" />
@@ -10,8 +11,8 @@
   </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
-      <Button x:Name="CancelButton" Text="Cancel" Clicked="OnCancel" />
-      <Button x:Name="RefreshButton" Text="Update available languages" Clicked="OnRefresh" />
+      <Button x:Name="CancelButton" Text="{i18n:Translate CancelButtonText}" Clicked="OnCancel" />
+      <Button x:Name="RefreshButton" Text="{i18n:Translate UpdateAvailableLanguagesButtonText}" Clicked="OnRefresh" />
       <ActivityIndicator x:Name="DownloadingIndicator" Color="Red" IsRunning="false" />
           <StackLayout x:Name="BoardLanguageLayout">
           </StackLayout>

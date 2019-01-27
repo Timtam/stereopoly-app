@@ -92,5 +92,11 @@ namespace stereopoly.resx {
         return ResourceManager.GetString("OnlyRemoteLanguageText", resourceCulture);
       }
     }
+
+    internal static string LanguageButtonText {
+      get {
+        return ResourceManager.GetString("LanguageButtonText", resourceCulture);
+      }
+    }
   }
 }

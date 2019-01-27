@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using stereopoly.cache;
+using stereopoly.resx;
 
 namespace stereopoly
 {
@@ -41,7 +42,7 @@ namespace stereopoly
 
     public void UpdateChangeBoardLanguageButton()
     {
-      this.ChangeBoardLanguageButton.Text = "Board language: " + Storage.GetCurrentLanguage().Name;
+      this.ChangeBoardLanguageButton.Text = String.Format(AppResources.LanguageButtonText, Storage.GetCurrentLanguage().Name);
     }
 
     public async void OnChangeBoardLanguage(object sender, EventArgs e)

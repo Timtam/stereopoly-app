@@ -178,4 +178,16 @@
     <value>only available for game boards</value>
     <comment>indicator for languages only available for server-side texts</comment>
 </data>
+<data name="LanguageButtonText" xml:space="preserve">
+    <value>Language: {0}</value>
+    <comment>settings button to change language</comment>
+</data>
+<data name="CancelButtonText" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+</data>
+<data name="UpdateAvailableLanguagesButtonText" xml:space="preserve">
+    <value>Update available languages</value>
+    <comment>button used to retrieve the up-to-date language list from server</comment>
+</data>
 </root>
