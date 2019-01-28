@@ -40,11 +40,6 @@ namespace stereopoly
       await Navigation.PushAsync(new WatchPage(c));
     }
 
-    public async void OnSettings(object sender, EventArgs e)
-    {
-      await Navigation.PushAsync(new SettingsPage());
-    }
-
     public async void OnEndGame(object sender, EventArgs e)
     {
       Storage.RemoveGameState(this.state);

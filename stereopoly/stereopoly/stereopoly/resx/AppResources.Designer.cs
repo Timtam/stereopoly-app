@@ -98,5 +98,11 @@ namespace stereopoly.resx {
         return ResourceManager.GetString("LanguageButtonText", resourceCulture);
       }
     }
+
+    internal static string GameStateButtonText {
+      get {
+        return ResourceManager.GetString("GameStateButtonText", resourceCulture);
+      }
+    }
   }
 }

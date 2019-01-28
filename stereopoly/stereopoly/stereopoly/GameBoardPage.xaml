@@ -14,7 +14,6 @@
       <Button x:Name="WatchNewsButton" Text="{i18n:Translate WatchNewsButton}" Clicked="OnWatchNews" />
       <Button x:Name="DrawChanceCardButton" Text="{i18n:Translate DrawChanceCardButton}" Clicked="OnDrawChanceCard" />
       <Button x:Name="DrawCommunityChestCardButton" Text="{i18n:Translate DrawCommunityChestCardButton}" Clicked="OnDrawCommunityChestCard" />
-      <Button x:Name="SettingsButton" Text="{i18n:Translate SettingsButton}" Clicked="OnSettings" />
       <Button x:Name="EndGameButton" Text="{i18n:Translate EndGameButton}" Clicked="OnEndGame" />
         </StackLayout>
     </ContentPage.Content>

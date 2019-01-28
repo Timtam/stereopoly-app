@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using stereopoly.cache;
+using stereopoly.resx;
 
 namespace stereopoly
 {
@@ -34,7 +35,7 @@ namespace stereopoly
       for(i=0; i < states.Count; i++)
       {
         b = new Button{
-          Text = states[i].Board.Name + ", last saved on " + states[i].Date,
+          Text = String.Format(AppResources.GameStateButtonText, states[i].Board.Name, states[i].Date),
         };
         b.Clicked += async (s,e) => {
           await this.OnGameStateSelect(this.ButtonGameStateMapping[(Button)s]);

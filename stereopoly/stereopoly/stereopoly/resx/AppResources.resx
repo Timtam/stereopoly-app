@@ -190,4 +190,8 @@
     <value>Update available languages</value>
     <comment>button used to retrieve the up-to-date language list from server</comment>
 </data>
+<data name="GameStateButtonText" xml:space="preserve">
+    <value>{0}, last saved on {1}</value>
+    <comment>button text shown on continue game page</comment>
+</data>
 </root>
