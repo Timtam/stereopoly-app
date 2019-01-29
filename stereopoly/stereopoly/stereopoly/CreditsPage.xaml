@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="stereopoly.CreditsPage">
+             x:Class="stereopoly.CreditsPage"
+             xmlns:i18n="clr-namespace:stereopoly;assembly=stereopoly">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="20, 40, 20, 20" />
@@ -12,7 +13,7 @@
         <StackLayout>
       <Label x:Name="AppVersionLabel" />
       <Label x:Name="BuildVersionLabel" />
-      <Button x:Name="ContactButton" Text="Contact the developer" Clicked="OnContact" />
+      <Button x:Name="ContactButton" Text="{i18n:Translate ContactDeveloperButtonText}" Clicked="OnContact" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

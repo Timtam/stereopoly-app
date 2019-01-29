@@ -110,10 +110,6 @@
     <value>Einstellungen</value>
     <comment>button for opening the settings</comment>
 </data>
-<data name="HelpButton" xml:space="preserve">
-    <value>Hilfe</value>
-    <comment>button for showing helpful tips</comment>
-</data>
 <data name="CreditsButton" xml:space="preserve">
     <value>Über diese App</value>
     <comment>button for showing developer-related information</comment>
@@ -193,5 +189,9 @@
 <data name="GameStateButtonText" xml:space="preserve">
     <value>{0}, zuletzt gespeichert am {1}</value>
     <comment>button text shown on continue game page</comment>
+</data>
+<data name="ContactDeveloperButtonText" xml:space="preserve">
+    <value>E-Mail an den Entwickler</value>
+    <comment>button to write an email to the developer</comment>
 </data>
 </root>

@@ -29,11 +29,6 @@ namespace stereopoly
       await Navigation.PushAsync(new SettingsPage());
     }
 
-    async void OnHelp(object sender, EventArgs e)
-    {
-      await Navigation.PushAsync(new HelpPage());
-    }
-
     async void OnCredits(object sender, EventArgs e)
     {
       await Navigation.PushAsync(new CreditsPage());

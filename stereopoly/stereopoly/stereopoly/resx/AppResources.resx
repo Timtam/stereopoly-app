@@ -110,10 +110,6 @@
     <value>Settings</value>
     <comment>button for opening the settings</comment>
 </data>
-<data name="HelpButton" xml:space="preserve">
-    <value>Help</value>
-    <comment>button for showing helpful tips</comment>
-</data>
 <data name="CreditsButton" xml:space="preserve">
     <value>About</value>
     <comment>button for showing developer-related information</comment>
@@ -193,5 +189,9 @@
 <data name="GameStateButtonText" xml:space="preserve">
     <value>{0}, last saved on {1}</value>
     <comment>button text shown on continue game page</comment>
+</data>
+<data name="ContactDeveloperButtonText" xml:space="preserve">
+    <value>Contact the developer</value>
+    <comment>button to write an email to the developer</comment>
 </data>
 </root>
